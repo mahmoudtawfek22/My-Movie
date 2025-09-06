@@ -103,6 +103,7 @@
 .item-card:hover {
   border: var(--primary) 1px solid;
   transform: scale(1.09);
+  z-index: 1;
 
   .image img {
     opacity: 1;
