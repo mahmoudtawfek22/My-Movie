@@ -17,12 +17,12 @@ export const routes: Routes = [
       {
         path: '',
         component: Movies,
-        data: { renderMode: 'ssr' },
+        data: { prerender: false },
       },
       {
         path: 'movie-details/:id',
         component: MovieDetails,
-        data: { renderMode: 'ssr' },
+        data: { prerender: false },
       },
     ],
   },
@@ -37,18 +37,18 @@ export const routes: Routes = [
       {
         path: '',
         component: Tv,
-        data: { renderMode: 'ssr' },
+        data: { prerender: false },
       },
       {
         path: 'series-details/:id',
         component: SeriesDetails,
-        data: { renderMode: 'ssr' },
+        data: { prerender: false },
       },
     ],
   },
   {
     path: 'about',
     component: People,
-    data: { renderMode: 'ssr' },
+    data: { prerender: false },
   },
 ];

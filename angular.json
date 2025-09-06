@@ -19,6 +19,8 @@
           "options": {
             "browser": "src/main.ts",
             "polyfills": [],
+            "prerender": false,
+
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
