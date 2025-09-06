@@ -17,19 +17,16 @@ export const routes: Routes = [
       {
         path: '',
         component: Movies,
-        data: { prerender: false },
       },
       {
         path: 'movie-details/:id',
         component: MovieDetails,
-        data: { prerender: false },
       },
     ],
   },
   {
     path: 'people/:id',
     component: People,
-    data: { renderMode: 'ssr' },
   },
   {
     path: 'tv/:id',
@@ -37,18 +34,15 @@ export const routes: Routes = [
       {
         path: '',
         component: Tv,
-        data: { prerender: false },
       },
       {
         path: 'series-details/:id',
         component: SeriesDetails,
-        data: { prerender: false },
       },
     ],
   },
   {
     path: 'about',
     component: People,
-    data: { prerender: false },
   },
 ];
