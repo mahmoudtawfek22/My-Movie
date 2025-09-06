@@ -17,16 +17,19 @@ export const routes: Routes = [
       {
         path: '',
         component: Movies,
+        data: { renderMode: 'ssr' },
       },
       {
         path: 'movie-details/:id',
         component: MovieDetails,
+        data: { renderMode: 'ssr' },
       },
     ],
   },
   {
     path: 'people/:id',
     component: People,
+    data: { renderMode: 'ssr' },
   },
   {
     path: 'tv/:id',
@@ -34,10 +37,12 @@ export const routes: Routes = [
       {
         path: '',
         component: Tv,
+        data: { renderMode: 'ssr' },
       },
       {
         path: 'series-details/:id',
         component: SeriesDetails,
+        data: { renderMode: 'ssr' },
       },
     ],
   },
