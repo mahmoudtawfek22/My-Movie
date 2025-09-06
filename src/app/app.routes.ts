@@ -49,5 +49,6 @@ export const routes: Routes = [
   {
     path: 'about',
     component: People,
+    data: { renderMode: 'ssr' },
   },
 ];
