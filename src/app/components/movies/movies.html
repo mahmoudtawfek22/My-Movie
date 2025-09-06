@@ -3,7 +3,7 @@
     @for (item of movies(); track item.id) {
     <div
       animate.enter="enter-animation"
-      class="col-lg-3 col-md-4 col-sm-6 col-12"
+      class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center align-items-center pt-4 pt-sm-2"
       appStructuredDataDirective
       [appStructuredData]="{
         '@context': 'https://schema.org',
