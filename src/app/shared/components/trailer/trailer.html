@@ -1,0 +1,25 @@
+<div class="video">
+  @if (safeUrl) {
+
+  <iframe
+    [src]="safeUrl"
+    [title]="videos()[0].name ?? 'Trailer'"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  >
+  </iframe>
+  }
+</div>
+<div class="d-flex align-items-center gap-2 my-3 px-3 flex-wrap">
+  @for(item of videos();track $index){
+  <div
+    class="trailer p-1 rounded-2"
+    [class.active]="selected().includes(item.key)"
+    (click)="changeTrailer(item.key)"
+  >
+    Trailer {{ $index + 1 }}
+  </div>
+  }
+</div>

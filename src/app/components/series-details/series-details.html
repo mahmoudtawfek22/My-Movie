@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="row row-gap-4">
+    <div class="col-12 mb-3">
+      <h1 class="section__title">{{ series()?.original_name }}</h1>
+    </div>
+    <div class="col-12 col-xl-6">
+      <div class="item item--details">
+        <div class="row">
+          <div class="col-12 col-sm-8 col-md-5 col-lg-4 col-xl-6 col-xxl-5">
+            <div class="item__cover">
+              <div class="image">
+                <img
+                  [ngSrc]="
+                    'https://image.tmdb.org/t/p/w500' + series()?.poster_path
+                  "
+                  [alt]="series()?.original_name"
+                  width="500"
+                  height="750"
+                  priority
+                />
+                <span
+                  class="item-rate"
+                  [style.border]="
+                    '2px solid ' + getBorderColor(series()?.vote_average ?? 0)
+                  "
+                  >{{ series()?.vote_average?.toFixed(1) }}</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7 col-lg-8 col-xl-6 col-xxl-7">
+            <div class="item__content">
+              <ul class="item__meta">
+                <li><span>Premiere::</span> 2019</li>
+                <!-- <li><span>Running time: </span> {{ series()?.runtime }} min</li> -->
+                <li><span>Country: </span> {{ series()?.origin_country }}</li>
+                <li>
+                  <span>Genre: </span>
+                  @for(item of series()?.genres; track item.id){
+                  {{ item.name }} &nbsp;}
+                </li>
+                <li>
+                  <span>Language: </span>
+                  @for(item of series()?.spoken_languages; track $index){
+                  {{ item.english_name }} &nbsp; }
+                </li>
+              </ul>
+              @if(series()?.overview){
+              <div class="item-description">
+                <div class="scroll-container">
+                  <p>{{ series()?.overview }}</p>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @if(videos().length > 0){
+    <div class="col-12 col-xl-6">
+      <app-trailer [videos]="videos()"></app-trailer>
+    </div>
+    }
+  </div>
+
+  <div class="p-4">
+    <div
+      (click)="toggleView()"
+      style="
+        font-size: 45px;
+        font-weight: 600;
+        color: var(--primary);
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: var(--card-border);
+        border-radius: 10px;
+        margin-bottom: 3rem;
+      "
+    >
+      @if(viewMode()=="accordion"){
+      <span class="material-symbols-outlined" style="font-size: inherit">
+        expansion_panels
+      </span>
+      } @else{ <i class="fa-solid fa-grip-lines"></i>}
+    </div>
+
+    <!-- Grid Mode -->
+    <ng-container *ngIf="viewMode() === 'grid'; else accordionView">
+      <div class="row">
+        @for (item of series()?.seasons; track item.id) {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+          <div class="item-card">
+            <span
+              [style.border]="'2px solid ' + getBorderColor(item.vote_average)"
+              class="item-rate"
+              >{{ item.vote_average.toFixed(1) }}</span
+            >
+            <div class="image">
+              <img
+                [ngSrc]="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
+                [alt]="item.name"
+                width="500"
+                height="750"
+                [priority]="$index === 0"
+              />
+            </div>
+            <div class="details d-flex flex-column">
+              <div class="fw-bolder">{{ item.name }}</div>
+              <div class="fw-bolder">Episodes: {{ item.episode_count }}</div>
+
+              <div>{{ item.overview | maxNumOfLetters : 82 }}</div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </ng-container>
+
+    <!-- Accordion Mode -->
+    <ng-template #accordionView>
+      <mat-accordion class="mt-4">
+        <mat-expansion-panel *ngFor="let season of series()?.seasons">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ season.name }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row row-gap-4">
+            <div class="col-12">
+              <div class="item item--details">
+                <div class="row">
+                  <div class="col-12 col-sm-8 col-md-5 col-lg-4">
+                    <div class="item__cover">
+                      <div class="image">
+                        <img
+                          [ngSrc]="
+                            'https://image.tmdb.org/t/p/w500' +
+                            season?.poster_path
+                          "
+                          [alt]="season?.name"
+                          width="500"
+                          height="750"
+                          priority
+                        />
+                        <span
+                          class="item-rate"
+                          [style.border]="
+                            '2px solid ' +
+                            getBorderColor(season?.vote_average ?? 0)
+                          "
+                          >{{ season?.vote_average?.toFixed(1) }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-7 col-lg-8">
+                    <div class="item__content">
+                      <ul class="item__meta">
+                        <li><span>📅 Air Date:</span> {{ season.air_date }}</li>
+                        <!-- <li><span>Running time: </span> {{ series()?.runtime }} min</li> -->
+                        <li>
+                          <span>🎬 Episodes:</span> {{ season.episode_count }}
+                        </li>
+                        <li>
+                          <span>⭐ Rating:</span> {{ season.vote_average }}
+                        </li>
+                      </ul>
+                      @if(season?.overview){
+                      <div class="item-description">
+                        <div class="scroll-container">
+                          <p>{{ season?.overview }}</p>
+                        </div>
+                      </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="flex gap-4 items-start">
+            <img
+              [ngSrc]="'https://image.tmdb.org/t/p/w200' + season.poster_path"
+              [alt]="season.name"
+              width="200"
+              height="300"
+              class="rounded-lg"
+            />
+
+            <div>
+              <p>📅 Air Date: {{ season.air_date }}</p>
+              <p>🎬 Episodes: {{ season.episode_count }}</p>
+              <p>⭐ Rating: {{ season.vote_average }}</p>
+            </div>
+          </div> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-template>
+  </div>
+</div>

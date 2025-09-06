@@ -1,0 +1,39 @@
+<section class="container">
+  <div class="row">
+    @for (item of people(); track item.id) {
+    <div
+      class="col-lg-3 col-md-4 col-sm-6 col-12"
+      appStructuredDataDirective
+      [appStructuredData]="{
+        '@context': 'https://schema.org',
+        '@type': 'person',
+        name: item.name,
+        image: 'https://image.tmdb.org/t/p/w500/' + item.profile_path,
+        gender: item.gender == 1 ? 'female' : 'male',
+        known_for_department: item?.known_for_department ?? 'none'
+      }"
+    >
+      <div class="item-card">
+        <div class="image">
+          <img
+            [ngSrc]="'https://image.tmdb.org/t/p/w500/' + item.profile_path"
+            [alt]="item.name"
+            width="500"
+            height="750"
+            [priority]="$index === 0"
+          />
+        </div>
+        <div class="details d-flex flex-column">
+          <div class="fw-bolder">{{ item.name }}</div>
+          <div>{{ item?.known_for_department ?? "actor" | titlecase }}</div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+
+<app-pagination
+  [config]="paginationConfig"
+  (pageChange)="changePage($event)"
+></app-pagination>

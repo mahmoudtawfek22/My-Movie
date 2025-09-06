@@ -1,0 +1,50 @@
+<section class="container">
+  <div class="row">
+    @for (item of tv(); track item.id) {
+    <div
+      class="col-lg-3 col-md-4 col-sm-6 col-12"
+      appStructuredDataDirective
+      [appStructuredData]="{
+        '@context': 'https://schema.org',
+        '@type': 'TVSeries',
+        image: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
+        description: item.overview,
+        datePublished: item.first_air_date,
+        genre: item.genre_ids,
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: item.vote_average,
+          ratingCount: item.vote_count
+        }
+      }"
+    >
+      <div class="item-card" [routerLink]="['./series-details', item.id]">
+        <span
+          [style.border]="'2px solid ' + getBorderColor(item.vote_average)"
+          class="item-rate"
+          >{{ item.vote_average.toFixed(1) }}</span
+        >
+        <div class="image">
+          <img
+            [ngSrc]="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
+            [alt]="item.name"
+            width="500"
+            height="750"
+            [priority]="$index == 0"
+          />
+        </div>
+        <div class="details d-flex flex-column">
+          <div class="fw-bolder">{{ item.name }}</div>
+          <div>{{ (item?.media_type ?? "tv") + " series" | titlecase }}</div>
+          <div>{{ item.overview | maxNumOfLetters : 82 }}</div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+
+<app-pagination
+  [config]="paginationConfig"
+  (pageChange)="changePage($event)"
+></app-pagination>

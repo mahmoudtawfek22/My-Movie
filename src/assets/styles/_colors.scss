@@ -1,0 +1,8 @@
+$mainColor:blue;
+$secondColor:red;
+
+@mixin center($direcion){
+  justify-content: center;
+  align-items: center;
+flex-direction: $direcion;
+}
