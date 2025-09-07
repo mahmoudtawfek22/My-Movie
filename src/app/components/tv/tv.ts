@@ -24,16 +24,16 @@ import { ApiResponse } from '../../shared/models/movies';
 import { TvService } from '../../services/tv-service';
 import { getBorderColor } from '../../shared/models/borderColor';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Card } from '../../shared/components/card/card';
 
 @Component({
   selector: 'app-tv',
   imports: [
     CommonModule,
-    MaxNumOfLettersPipe,
     PaginationComponent,
-    NgOptimizedImage,
     StructuredDataDirective,
     RouterLink,
+    Card,
   ],
   templateUrl: './tv.html',
   styleUrls: ['./tv.scss', '../movies/movies.scss'],
@@ -41,13 +41,13 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Tv {
-  paginationConfig: PaginationConfig = {
+  paginationConfig = signal<PaginationConfig>({
     currentPage: 1,
     itemsPerPage: 20,
     totalItems: 0,
     maxSize: 5,
     totalPages: 0,
-  };
+  });
   private searchSer = inject(SearchService);
   private destroyRef = inject(DestroyRef);
   getBorderColor = getBorderColor;
@@ -76,9 +76,8 @@ export class Tv {
 
   handleMoviesResponse(page: number) {
     return map((res: ApiResponse<TvItem>) => {
-      this.paginationConfig = this.paginationService.updatePaginationConfig(
-        page,
-        res
+      this.paginationConfig.set(
+        this.paginationService.updatePaginationConfig(page, res)
       );
       return res.results;
     });

@@ -1,8 +1,8 @@
 <section class="container">
   <div class="row" animate.enter="enter-animation">
     @for (item of tv(); track item.id) {
-    <div
-      class="col-lg-3 col-md-4 col-sm-6 col-12"
+
+    <app-card
       appStructuredDataDirective
       [appStructuredData]="{
         '@context': 'https://schema.org',
@@ -17,34 +17,17 @@
           ratingCount: item.vote_count
         }
       }"
-    >
-      <div class="item-card" [routerLink]="['./series-details', item.id]">
-        <span
-          [style.border]="'2px solid ' + getBorderColor(item.vote_average)"
-          class="item-rate"
-          >{{ item.vote_average.toFixed(1) }}</span
-        >
-        <div class="image">
-          <img
-            [ngSrc]="'https://image.tmdb.org/t/p/w500/' + item.poster_path"
-            [alt]="item.name"
-            width="500"
-            height="750"
-            [priority]="$index == 0"
-          />
-        </div>
-        <div class="details d-flex flex-column">
-          <div class="fw-bolder">{{ item.name }}</div>
-          <div>{{ (item?.media_type ?? "tv") + " series" | titlecase }}</div>
-          <div>{{ item.overview | maxNumOfLetters : 82 }}</div>
-        </div>
-      </div>
-    </div>
+      class="col-lg-3 col-md-4 col-sm-6 col-12"
+      [routerLink]="['./series-details', item.id]"
+      [data$]="item"
+      [index]="$index"
+    ></app-card>
+
     }
   </div>
 </section>
 
 <app-pagination
-  [config]="paginationConfig"
+  [config]="paginationConfig()"
   (pageChange)="changePage($event)"
 ></app-pagination>

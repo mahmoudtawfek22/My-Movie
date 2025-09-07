@@ -16,15 +16,14 @@ import {
   MovieVideo,
   MovieVideosResponse,
 } from '../../shared/models/movieTrailer';
-import { Video } from '../../shared/models/video';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [CommonModule, NgOptimizedImage, Trailer],
+  imports: [CommonModule, Trailer],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieDetails {
   getBorderColor = getBorderColor;

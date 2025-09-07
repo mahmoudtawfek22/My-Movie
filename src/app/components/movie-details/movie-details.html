@@ -10,14 +10,11 @@
             <div class="item__cover">
               <div class="image">
                 <img
-                  [ngSrc]="
+                  [src]="
                     'https://image.tmdb.org/t/p/w500' +
                     movie.value()?.poster_path
                   "
                   [alt]="movie.value()?.title"
-                  width="500"
-                  height="750"
-                  priority
                 />
                 <span
                   class="item-rate"

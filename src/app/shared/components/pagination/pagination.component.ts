@@ -10,6 +10,7 @@ import {
   effect,
   ChangeDetectorRef,
   computed,
+  signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -35,30 +36,31 @@ export class PaginationComponent {
     totalPages: 0,
   });
   currentPage = computed(() => this.config().currentPage);
+  totalPages = computed(() => this.config().totalPages);
+  paginatorPages = signal<number[]>([]);
+  constructor() {
+    effect(() => {
+      this.currentPage();
+      this.pages;
+    });
+  }
 
-  constructor() {}
-
-  // @Input() config!: PaginationConfig;
-
-  // @Output() pageChange = new EventEmitter<number>();
   pageChange = output<number>();
 
   get pages(): number[] {
     const pages: number[] = [];
     const maxSize = this.config().maxSize;
-    const currentPage = this.config().currentPage;
-    const totalPages = this.config().totalPages;
 
-    if (totalPages <= maxSize) {
-      for (let i = 1; i <= totalPages; i++) {
+    if (this.totalPages() <= maxSize) {
+      for (let i = 1; i <= this.totalPages(); i++) {
         pages.push(i);
       }
     } else {
-      let startPage = Math.max(1, currentPage - Math.floor(maxSize / 2));
+      let startPage = Math.max(1, this.currentPage() - Math.floor(maxSize / 2));
       let endPage = startPage + maxSize - 1;
 
-      if (endPage > totalPages) {
-        endPage = totalPages;
+      if (endPage > this.totalPages()) {
+        endPage = this.totalPages();
         startPage = Math.max(1, endPage - maxSize + 1);
       }
 
@@ -66,16 +68,12 @@ export class PaginationComponent {
         pages.push(i);
       }
     }
-
+    this.paginatorPages.set(pages);
     return pages;
   }
 
   goToPage(page: number): void {
-    if (
-      page >= 1 &&
-      page <= this.config().totalPages &&
-      page !== this.config().currentPage
-    ) {
+    if (page >= 1 && page <= this.totalPages() && page !== this.currentPage()) {
       this.pageChange.emit(page);
     }
   }
@@ -85,22 +83,22 @@ export class PaginationComponent {
   }
 
   goToLast(): void {
-    this.goToPage(this.config().totalPages);
+    this.goToPage(this.totalPages());
   }
 
   goToPrevious(): void {
-    this.goToPage(this.config().currentPage - 1);
+    this.goToPage(this.currentPage() - 1);
   }
 
   goToNext(): void {
-    this.goToPage(this.config().currentPage + 1);
+    this.goToPage(this.currentPage() + 1);
   }
 
   isFirstPage(): boolean {
-    return this.config().currentPage === 1;
+    return this.currentPage() === 1;
   }
 
   isLastPage(): boolean {
-    return this.config().currentPage === this.config().totalPages;
+    return this.currentPage() === this.totalPages();
   }
 }

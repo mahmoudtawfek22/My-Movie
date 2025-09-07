@@ -117,6 +117,7 @@
       </div>
       <ul #ul [ngClass]="{ 'active-ul': isMenuOpen }">
         <li
+          (click)="searchText.set('')"
           [routerLink]="['movies', pageNum]"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: false }"
@@ -124,6 +125,7 @@
           Movies
         </li>
         <li
+          (click)="searchText.set('')"
           [routerLink]="['tv', pageNum]"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: false }"
@@ -131,6 +133,7 @@
           Series
         </li>
         <li
+          (click)="searchText.set('')"
           [routerLink]="['people', pageNum]"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: false }"
@@ -156,13 +159,7 @@
       </div>
     </div>
   </div>
-  @if(showSearch){
-  <div
-    class="search-div"
-    animate.enter="enter-animation"
-    animate.leave="leave-animation"
-  >
+  <div class="search-div">
     <app-search class="app-search" [showSearch]="showSearch"></app-search>
   </div>
-  }
 </header>

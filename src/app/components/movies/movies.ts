@@ -29,17 +29,16 @@ import {
   RouterModule,
 } from '@angular/router';
 import { GenreNamePipe } from '../../shared/pipes/genre-name-pipe';
+import { Card } from '../../shared/components/card/card';
 
 @Component({
   selector: 'app-movies',
   imports: [
     CommonModule,
-    MaxNumOfLettersPipe,
     PaginationComponent,
-    NgOptimizedImage,
     StructuredDataDirective,
     RouterLink,
-    GenreNamePipe,
+    Card,
   ],
   templateUrl: './movies.html',
   styleUrl: './movies.scss',
@@ -47,19 +46,18 @@ import { GenreNamePipe } from '../../shared/pipes/genre-name-pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Movies {
-  getBorderColor = getBorderColor;
-  paginationConfig: PaginationConfig = {
+  paginationConfig = signal<PaginationConfig>({
     currentPage: 1,
     itemsPerPage: 20,
     totalItems: 0,
     maxSize: 5,
     totalPages: 0,
-  };
+  });
   private searchSer = inject(SearchService);
   private destroyRef = inject(DestroyRef);
   searchText = this.searchSer.searchSignal;
   movies = signal<MediaItem[]>([]);
-  pageNum: number = 1;
+  pageNum = signal<number>(1);
   constructor(
     private paginationService: PaginationService,
     private meta: MetaService,
@@ -72,7 +70,7 @@ export class Movies {
       this.search(this.searchText());
     });
     this.acivatedroute.params.subscribe((param) => {
-      this.pageNum = Number(param['id']);
+      this.pageNum.set(Number(param['id']));
     });
   }
 
@@ -82,9 +80,8 @@ export class Movies {
 
   handleMoviesResponse(page: number) {
     return map((res: ApiResponse<MediaItem>) => {
-      this.paginationConfig = this.paginationService.updatePaginationConfig(
-        page,
-        res
+      this.paginationConfig.set(
+        this.paginationService.updatePaginationConfig(page, res)
       );
       return res.results;
     });
@@ -122,7 +119,6 @@ export class Movies {
       this.searchMovies(page, this.searchText());
     } else {
       this.router.navigate(['movies', page]);
-      this.getAllMovies(page);
     }
   }
 
@@ -130,8 +126,7 @@ export class Movies {
     if (query) {
       this.searchMovies(1, query);
     } else {
-      this.getAllMovies(this.pageNum);
-      this.router.navigate(['movies', this.pageNum]);
+      this.getAllMovies(this.pageNum());
     }
   }
 }

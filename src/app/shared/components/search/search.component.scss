@@ -1,24 +1,21 @@
-::ng-deep {
-  form .search {
-    width: 300px;
-    padding: 4px 16px;
-    padding-right: 18px;
-    border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    transition: border-color 0.3s ease;
-    border-width: 1px;
-    &:focus-within {
-      outline: none;
-      border-color: rgb(221, 129, 75);
-      box-shadow: 0 0 0 2px rgba(221, 129, 75, 0.2);
-    }
-    &:hover {
-      outline: none;
-      border-color: rgb(221, 129, 75);
-      box-shadow: 0 0 0 2px rgba(221, 129, 75, 0.2);
-    }
+.search {
+  width: 300px;
+  padding: 4px 16px;
+  padding-right: 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+
+  transition: border-color 0.3s ease;
+
+  border-width: 1px;
+  &:focus {
+    // outline: none;
+    border-color: rgb(221, 129, 75);
+    box-shadow: 0 0 0 2px rgba(221, 129, 75, 0.2);
+    line-height: normal;
   }
 }
+
 input[type="text"] {
   display: block;
 
@@ -37,21 +34,18 @@ input[type="text"] {
   }
 }
 form {
-  display: flex;
+  display: block;
   height: auto;
-  justify-content: center;
-  align-items: center;
   padding: 30px 0px 0px;
   opacity: 1;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s linear;
   max-height: 200px;
   overflow: hidden;
 }
 
 .disable-search-div {
+  padding: 0px 0px;
   opacity: 0;
-  padding: 0px 0px 0px;
-
   max-height: 0;
   pointer-events: none;
 }

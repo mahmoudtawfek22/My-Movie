@@ -28,7 +28,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-people',
   templateUrl: './people.html',
-  styleUrls: ['../movies/movies.scss', './people.scss'],
+  styleUrls: [
+    '../movies/movies.scss',
+    './people.scss',
+    '../../shared/components/card/card.scss',
+  ],
 
   imports: [
     CommonModule,
@@ -41,13 +45,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class People {
   getBorderColor = getBorderColor;
-  paginationConfig: PaginationConfig = {
+  paginationConfig = signal<PaginationConfig>({
     currentPage: 1,
     itemsPerPage: 20,
     totalItems: 0,
     maxSize: 5,
     totalPages: 0,
-  };
+  });
   private searchSer = inject(SearchService);
   private destroyRef = inject(DestroyRef);
   searchText = this.searchSer.searchSignal;
@@ -76,9 +80,8 @@ export class People {
 
   handleMoviesResponse(page: number) {
     return map((res: ApiResponse<Person>) => {
-      this.paginationConfig = this.paginationService.updatePaginationConfig(
-        page,
-        res
+      this.paginationConfig.set(
+        this.paginationService.updatePaginationConfig(page, res)
       );
       return res.results;
     });

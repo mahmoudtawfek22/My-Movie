@@ -4,12 +4,14 @@ import {
   Component,
   ElementRef,
   HostListener,
+  inject,
   Renderer2,
   ViewChild,
   viewChild,
 } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { SearchComponent } from '../../shared/components/search/search.component';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +27,9 @@ export class Header {
   @ViewChild('burger') burger!: ElementRef;
   showSearch: boolean = false;
   pageNum: number = 1;
-  constructor(private render: Renderer2) {}
+  public searchService = inject(SearchService);
+  searchText = this.searchService.searchSignal;
+  constructor(private render: Renderer2, private router: Router) {}
   ngAfterViewInit(): void {
     // this.appearUl();
   }
@@ -40,6 +44,7 @@ export class Header {
   displaySearch() {
     this.showSearch = !this.showSearch;
   }
+
   @HostListener('document:click', ['$event']) closeMenu(ev: Event) {
     if (
       this.isMenuOpen &&

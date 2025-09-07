@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-center align-items-center pt-4 pt-sm-2">
+  <div class="item-card">
+    <span
+      [style.border]="'2px solid ' + getBorderColor(data$().vote_average)"
+      class="item-rate"
+      >{{ data$().vote_average.toFixed(1) }}</span
+    >
+    <div class="image">
+      <img
+        [ngSrc]="'https://image.tmdb.org/t/p/w500/' + data$().poster_path"
+        [priority]="index() < 5"
+        [alt]="data$().name"
+        width="500"
+        height="750"
+      />
+    </div>
+    <div class="details d-flex flex-column">
+      <div class="fw-bolder">{{ data$().title ?? data$().name }}</div>
+      <div>{{ data$().genre_ids | genreName }}</div>
+      <div>{{ data$().overview | maxNumOfLetters : 82 }}</div>
+    </div>
+  </div>
+</div>

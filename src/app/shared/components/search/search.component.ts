@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   DestroyRef,
+  effect,
   inject,
   input,
   Input,
@@ -28,12 +29,19 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class SearchComponent implements OnInit {
   form: FormGroup;
+  private search = inject(SearchService);
   showSearch = input<boolean>(false);
   searchChange = output<string>();
+  searchtext = this.search.searchSignal;
   private destroyRef = inject(DestroyRef);
-  constructor(private fb: FormBuilder, private search: SearchService) {
+  constructor(private fb: FormBuilder) {
     this.form = fb.group({
-      query: [''],
+      query: [this.searchtext()],
+    });
+    effect(() => {
+      if (this.searchtext() == '') {
+        this.form.controls['query'].setValue(this.searchtext());
+      }
     });
   }
 
