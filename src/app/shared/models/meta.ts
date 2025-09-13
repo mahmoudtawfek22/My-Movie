@@ -20,7 +20,7 @@ export const moviesMetaData: any[] = [
   },
   {
     property: 'og:image',
-    content: 'assets/images/movies-banner.png', // غيّرها لصورة بانر مناسبة للأفلام
+    content: 'assets/images/logo.png',
   },
 ];
 
@@ -46,7 +46,7 @@ export const tvMetaData: any[] = [
   },
   {
     property: 'og:image',
-    content: 'assets/images/tv-app-banner.png', // غيّرها لصورة بانر مناسبة للـ TV page
+    content: 'assets/images/logo.png',
   },
 ];
 
@@ -72,7 +72,7 @@ export const peopleMetaData: any[] = [
   },
   {
     property: 'og:image',
-    content: 'assets/images/actors-banner.png', // غيّرها لصورة بانر خاصة بالنجوم
+    content: 'assets/images/logo.png',
   },
 ];
 
@@ -98,6 +98,6 @@ export const homeMetaData: any[] = [
   },
   {
     property: 'og:image',
-    content: 'assets/images/movies-app-banner.png', // غيّر المسار لصورة مناسبة
+    content: 'assets/images/logo.png',
   },
 ];

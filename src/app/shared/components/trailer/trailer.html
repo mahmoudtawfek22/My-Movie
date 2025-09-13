@@ -15,6 +15,8 @@
 <div class="d-flex align-items-center gap-2 my-3 px-3 flex-wrap">
   @for(item of videos();track $index){
   <div
+    tabindex="0"
+    (keydown)="$event.key == 'Enter' ? changeTrailer(item.key) : null"
     class="trailer p-1 rounded-2"
     [class.active]="selected().includes(item.key)"
     (click)="changeTrailer(item.key)"

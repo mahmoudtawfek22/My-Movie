@@ -36,7 +36,7 @@ import { MaxNumOfLettersPipe } from '../../shared/pipes/max-num-of-letters-pipe'
   styleUrls: [
     './series-details.scss',
     '../movie-details/movie-details.scss',
-    '../movies/movies.scss',
+    '../../shared/components/card/card.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

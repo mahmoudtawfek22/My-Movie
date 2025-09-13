@@ -1,0 +1,29 @@
+footer {
+  background-color: inherit;
+  color: white;
+}
+
+footer h6,
+div span {
+  color: white;
+}
+
+footer p {
+  color: gray;
+}
+
+footer a,
+p {
+  color: gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer i {
+  color: var(--primary);
+}
+.links p a {
+  &:hover {
+    color: var(--primary) !important;
+  }
+}

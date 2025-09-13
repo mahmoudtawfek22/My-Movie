@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center align-items-center pt-4 pt-sm-2">
-  <div class="item-card">
+<div>
+  <div class="item-card" [class.homecard]="isHome()">
     <span
       [style.border]="'2px solid ' + getBorderColor(data$().vote_average)"
       class="item-rate"
@@ -7,7 +7,11 @@
     >
     <div class="image">
       <img
-        [ngSrc]="'https://image.tmdb.org/t/p/w500/' + data$().poster_path"
+        [ngSrc]="
+          data$().poster_path
+            ? 'https://image.tmdb.org/t/p/w500/' + data$().poster_path
+            : './assets/images.png'
+        "
         [priority]="index() < 5"
         [alt]="data$().name"
         width="500"

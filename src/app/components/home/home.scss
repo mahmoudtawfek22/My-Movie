@@ -1,0 +1,60 @@
+.enter-animation {
+  animation: slide-fade 3s;
+}
+
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+::ng-deep {
+  .owl-carousel .owl-stage-outer {
+    padding: 1rem 0.5rem 1rem !important;
+  }
+}
+
+.skeleton-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.skeleton-card {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #2c2c2c 25%, #3a3a3a 50%, #2c2c2c 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+h2 {
+  color: var(--primary);
+}
+
+.box {
+  padding-bottom: 2rem;
+  &:last-child {
+    border-top: var(--card-border);
+    padding-top: 2rem;
+  }
+}
+
+.invisible {
+  visibility: hidden !important;
+}

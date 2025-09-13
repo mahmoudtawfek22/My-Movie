@@ -1,8 +1,14 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+} from '@angular/core';
 import { MaxNumOfLettersPipe } from '../../pipes/max-num-of-letters-pipe';
 import { GenreNamePipe } from '../../pipes/genre-name-pipe';
 import { getBorderColor } from '../../models/borderColor';
+import e from 'express';
 
 @Component({
   selector: 'app-card',
@@ -17,5 +23,6 @@ export class Card {
 
   data$ = input<any>({});
   index = input<number>(0);
+  isHome = input<boolean>(false);
   constructor() {}
 }

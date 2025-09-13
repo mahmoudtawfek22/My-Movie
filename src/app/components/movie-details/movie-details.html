@@ -1,70 +1,99 @@
-<div class="container">
-  <div class="row row-gap-4">
-    <div class="col-12 mb-3">
-      <h1 class="section__title">{{ movie.value()?.title }}</h1>
-    </div>
-    <div class="col-12 col-xl-6">
-      <div class="item item-details px-3 px-sm-0">
-        <div class="row">
-          <div class="col-12 col-sm-8 col-md-5 col-lg-4 col-xl-6 col-xxl-5">
-            <div class="item__cover">
-              <div class="image">
-                <img
-                  [src]="
-                    'https://image.tmdb.org/t/p/w500' +
-                    movie.value()?.poster_path
-                  "
-                  [alt]="movie.value()?.title"
-                />
-                <span
-                  class="item-rate"
-                  [style.border]="
-                    '2px solid ' +
-                    getBorderColor(movie.value()?.vote_average ?? 0)
-                  "
-                  >{{ movie.value()?.vote_average?.toFixed(1) }}</span
-                >
-              </div>
+@if(movie.hasValue()&&trailer.hasValue()){
+<div class="row row-gap-4" animate.enter="enter-animation ">
+  <div class="col-12 mb-3">
+    <h1 class="section__title">{{ movie.value().title }}</h1>
+  </div>
+  <div class="col-12 col-xl-6">
+    <div class="item item-details px-3 px-sm-0">
+      <div class="row">
+        <div class="col-12 col-sm-8 col-md-5 col-lg-4 col-xl-6 col-xxl-5">
+          <div class="item__cover">
+            <div class="image">
+              <img
+                [src]="
+                  'https://image.tmdb.org/t/p/w500' + movie.value().poster_path
+                "
+                [alt]="movie.value().title"
+              />
+              <span
+                class="item-rate"
+                [style.border]="
+                  '2px solid ' + getBorderColor(movie.value().vote_average)
+                "
+                >{{ movie.value().vote_average.toFixed(1) }}</span
+              >
             </div>
           </div>
+        </div>
 
-          <div class="col-12 col-md-7 col-lg-8 col-xl-6 col-xxl-7 pt-4 pt-md-0">
-            <div class="item__content">
-              <ul class="item__meta">
-                <li><span>Premiere::</span> 2019</li>
-                <li>
-                  <span>Running time: </span> {{ movie.value()?.runtime }} min
-                </li>
-                <li>
-                  <span>Country: </span> {{ movie.value()?.origin_country }}
-                </li>
-                <li>
-                  <span>Genre: </span>
-                  @for(item of movie.value()?.genres; track item.id){
-                  {{ item.name }} &nbsp;}
-                </li>
-                <li>
-                  <span>Language: </span>
-                  @for(item of movie.value()?.spoken_languages; track $index){
-                  {{ item.english_name }} &nbsp; }
-                </li>
-              </ul>
-              @if(movie.value()?.overview){
-              <div class="item-description">
-                <div class="scroll-container">
-                  <p>{{ movie.value()?.overview }}</p>
-                </div>
+        <div class="col-12 col-md-7 col-lg-8 col-xl-6 col-xxl-7 pt-4 pt-md-0">
+          <div class="item__content">
+            <ul class="item__meta">
+              <li><span>Premiere::</span> 2019</li>
+              <li>
+                <span>Running time: </span> {{ movie.value().runtime }} min
+              </li>
+              <li><span>Country: </span> {{ movie.value().origin_country }}</li>
+              <li>
+                <span>Genre: </span>
+                @for(item of movie.value().genres; track item.id){
+                {{ item.name }} &nbsp;}
+              </li>
+              <li>
+                <span>Language: </span>
+                @for(item of movie.value().spoken_languages; track $index){
+                {{ item.english_name }} &nbsp; }
+              </li>
+            </ul>
+            @if(movie.value().overview){
+            <div class="item-description">
+              <div class="scroll-container">
+                <p>{{ movie.value().overview }}</p>
               </div>
-              }
             </div>
+            }
           </div>
         </div>
       </div>
     </div>
-    @if(videos().length > 0){
-    <div class="col-12 col-xl-6 pt-3 pt-lg-0">
-      <app-trailer [videos]="videos()"></app-trailer>
-    </div>
-    }
+  </div>
+  @if(videos().length > 0){
+  <div class="col-12 col-xl-6 pt-3 pt-lg-0">
+    <app-trailer [videos]="videos()"></app-trailer>
+  </div>
+  }
+</div>
+}@else {
+<div
+  style="height: 80vh"
+  class="d-flex justify-content-center align-items-center w-100"
+>
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-success" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-danger" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-warning" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-info" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-light" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only"></span>
   </div>
 </div>
+}

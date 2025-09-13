@@ -1,0 +1,107 @@
+<footer
+  class="textcenter text-lg-start mt-0 text-muted"
+  role="contentinfo"
+  aria-label="Website footer"
+>
+  <!-- Section: Social media -->
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    aria-label="Social media links"
+  >
+    <div>
+      <a href="" class="me-4" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4" aria-label="Google">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </section>
+
+  <section aria-label="Footer links and contact information">
+    <div class="container text-center text-md-start mt-5">
+      <div class="row mt-3">
+        <!-- Useful Links -->
+        <div
+          class="col-12 col-sm-6 col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 links"
+          aria-labelledby="useful-links"
+        >
+          <h6 id="useful-links" class="text-uppercase fw-bold mb-4">
+            Useful Links
+          </h6>
+          <p>
+            <a [routerLink]="['/']" aria-label="Movies page"> Movies </a>
+          </p>
+          <p>
+            <a [routerLink]="['/tv', 'all']" aria-label="Series page">
+              Series
+            </a>
+          </p>
+          <p>
+            <a [routerLink]="['/people']" aria-label="People page"> People </a>
+          </p>
+        </div>
+
+        <!-- Contact -->
+        <div
+          class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+          aria-labelledby="contact-info"
+        >
+          <h6 id="contact-info" class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> Egypt, Cairo</p>
+          <p>
+            <a
+              href="mailto:mahmoud.tawfek.elsayed22@gmail.com"
+              class="text-decoration-none"
+              aria-label="Email Mahmoud Tawfek"
+            >
+              <i class="fas fa-envelope me-3"></i>Mahmoud Tawfek
+            </a>
+          </p>
+          <p>
+            <a
+              href="tel:01280968784"
+              class="text-decoration-none"
+              aria-label="Call 01280968784"
+            >
+              <i class="fas fa-phone me-3"></i>01280968784
+            </a>
+          </p>
+          <p>
+            <a
+              href="tel:01095098498"
+              class="text-decoration-none"
+              aria-label="Call 01095098498"
+            >
+              <i class="fas fa-phone me-3"></i>01095098498
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Copyright -->
+  <div
+    class="text-center text-secondary p-4"
+    style="background-color: rgba(0, 0, 0, 0.05)"
+    aria-label="Copyright information"
+  >
+    © {{ date.getFullYear() }} copyright
+    <a class="text-reset fw-bold" routerLink="" aria-label="Visit mymovie.com"
+      >mymovie.com</a
+    >
+  </div>
+</footer>

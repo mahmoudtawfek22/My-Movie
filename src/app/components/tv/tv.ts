@@ -126,4 +126,10 @@ export class Tv {
       this.router.navigate(['tv', this.pageNum]);
     }
   }
+
+  go(id: number) {
+    this.router.navigate(['./series-details', id], {
+      relativeTo: this.acivatedroute,
+    });
+  }
 }

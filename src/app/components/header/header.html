@@ -1,6 +1,11 @@
-<header class="container mb-4">
-  <div class="head">
-    <div class="logo" [routerLink]="['']">
+<header class="mb-4">
+  <div class="head container" aria-label="site logo">
+    <div
+      class="logo"
+      [routerLink]="['']"
+      (keydown)="go('')"
+      class="d-flex justify-content-center align-items-center pt-4 pt-sm-2"
+    >
       <svg
         _ngcontent-ng-c2917350613=""
         xmlns="http://www.w3.org/2000/svg"
@@ -111,32 +116,41 @@
       </svg>
     </div>
 
-    <div class="routes">
+    <div class="routes" role="navigation" aria-label="Main menu">
       <div #burger class="burger" (click)="appearUl()">
         <i class="fa-solid fa-bars"></i>
       </div>
       <ul #ul [ngClass]="{ 'active-ul': isMenuOpen }">
         <li
           (click)="searchText.set('')"
-          [routerLink]="['movies', pageNum]"
+          [routerLink]="['home']"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: false }"
+          (keydown.enter)="go('')"
+        >
+          Home
+        </li>
+        <li
+          (click)="searchText.set('')"
+          [routerLink]="['movies', pageNum()]"
+          [class.active]="isMoviesActive()"
+          (keydown.enter)="go('movies', pageNum())"
         >
           Movies
         </li>
         <li
           (click)="searchText.set('')"
-          [routerLink]="['tv', pageNum]"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: false }"
+          [routerLink]="['tv', pageNum()]"
+          [class.active]="isSeriesActive()"
+          (keydown.enter)="go('tv', pageNum())"
         >
           Series
         </li>
         <li
           (click)="searchText.set('')"
-          [routerLink]="['people', pageNum]"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: false }"
+          [routerLink]="['people', pageNum()]"
+          [class.active]="isPeopleActive()"
+          (keydown.enter)="go('people', pageNum())"
         >
           People
         </li>
@@ -144,12 +158,19 @@
           routerLink="about"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
+          (keydown.enter)="go('about')"
         >
           About
         </li>
       </ul>
-      <div>
-        <div class="search">
+
+      <div [class.hidden]="!showSearchIcon()">
+        <div
+          tabindex="0"
+          (keydown.enter)="displaySearch()"
+          class="search"
+          aria-label="search"
+        >
           <i
             (click)="displaySearch()"
             [ngClass]="{ 'search-icon-focus': showSearch }"

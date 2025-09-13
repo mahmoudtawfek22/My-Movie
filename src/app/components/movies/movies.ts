@@ -58,12 +58,13 @@ export class Movies {
   searchText = this.searchSer.searchSignal;
   movies = signal<MediaItem[]>([]);
   pageNum = signal<number>(1);
+  console: any;
   constructor(
     private paginationService: PaginationService,
     private meta: MetaService,
     private moviesSer: MoviesService,
     private acivatedroute: ActivatedRoute,
-    private router: Router
+    public router: Router
   ) {
     this.meta.updateMetaTags(moviesMetaData, 'Movies');
     effect(() => {
@@ -128,5 +129,14 @@ export class Movies {
     } else {
       this.getAllMovies(this.pageNum());
     }
+  }
+  go(id: number) {
+    // if (ev.key.toLowerCase() == 'enter') {
+    this.router.navigate(['./movie-details', id], {
+      relativeTo: this.acivatedroute,
+    });
+    // } else {
+    //   null;
+    // }
   }
 }

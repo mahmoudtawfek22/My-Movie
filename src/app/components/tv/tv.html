@@ -1,5 +1,7 @@
-<section class="container">
-  <div class="row" animate.enter="enter-animation">
+@if (tv().length>0) {
+
+<section class="">
+  <div class="row" animate.enter="enter-animation" aria-label="movies list">
     @for (item of tv(); track item.id) {
 
     <app-card
@@ -7,6 +9,7 @@
       [appStructuredData]="{
         '@context': 'https://schema.org',
         '@type': 'TVSeries',
+        title: item.name,
         image: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
         description: item.overview,
         datePublished: item.first_air_date,
@@ -17,10 +20,12 @@
           ratingCount: item.vote_count
         }
       }"
+      (keydown.enter)="go(item.id)"
       class="col-lg-3 col-md-4 col-sm-6 col-12"
       [routerLink]="['./series-details', item.id]"
       [data$]="item"
       [index]="$index"
+      [ariaLabel]="item.name"
     ></app-card>
 
     }
@@ -31,3 +36,38 @@
   [config]="paginationConfig()"
   (pageChange)="changePage($event)"
 ></app-pagination>
+}@else{
+
+<div
+  style="height: 80vh"
+  class="d-flex justify-content-center align-items-center w-100"
+>
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-success" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-danger" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-warning" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-info" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-light" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="spinner-grow text-dark" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+}

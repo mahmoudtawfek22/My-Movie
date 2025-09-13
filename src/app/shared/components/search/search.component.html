@@ -1,6 +1,6 @@
 <form [formGroup]="form" [ngClass]="{ 'disable-search-div': !showSearch() }">
   <div class="search d-flex justify-content-start align-items-center gap-2">
     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-    <input type="text" formControlName="query" />
+    <input aria-label="search input" type="text" formControlName="query" />
   </div>
 </form>
