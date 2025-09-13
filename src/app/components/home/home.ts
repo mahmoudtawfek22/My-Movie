@@ -129,14 +129,11 @@ export class Home {
     }
   }
   onDrag(bool: boolean) {
-    this.clickable.set(bool);
+    this.clickable.set(bool); //false
   }
   onDragEnd(bool: boolean) {
-    this.clickable.set(bool);
+    setTimeout(() => {
+      this.clickable.set(bool);
+    }, 300);
   }
-  // onCarouselInitialized() {
-  //   setTimeout(() => {
-  //     this.showCarousel.set(true);
-  //   }, 300);
-  // }
 }
