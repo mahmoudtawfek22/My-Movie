@@ -37,8 +37,8 @@
 
     <owl-carousel-o
       [options]="customOptions"
-      (dragging)="onDrag(true)"
-      (translated)="onDragEnd(false)"
+      (dragging)="onDrag(false)"
+      (translated)="onDragEnd(true)"
     >
       @for (item of topRatedSeries(); track item.id) {
       <ng-template carouselSlide>
@@ -73,8 +73,8 @@
     <h2>Popular</h2>
     <owl-carousel-o
       [options]="customOptions"
-      (dragging)="onDrag(true)"
-      (translated)="onDragEnd(false)"
+      (dragging)="onDrag(false)"
+      (translated)="onDragEnd(true)"
     >
       @for (item of popularMovies(); track item.id) {
       <ng-template carouselSlide>
@@ -105,8 +105,8 @@
 
     <owl-carousel-o
       [options]="customOptions"
-      (dragging)="onDrag(true)"
-      (translated)="onDragEnd(false)"
+      (dragging)="onDrag(false)"
+      (translated)="onDragEnd(true)"
     >
       @for (item of popularSeries(); track item.id) {
       <ng-template carouselSlide>
