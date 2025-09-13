@@ -16,6 +16,7 @@
           [data$]="item"
           [index]="$index"
           (click)="go('./movie-details', item.id)"
+          (keydown.enter)="go('./movie-details', item.id)"
           [ariaLabel]="item.title"
           appStructuredDataDirective
           [appStructuredData]="{
@@ -46,6 +47,12 @@
           [isHome]="true"
           tabindex="0"
           appStructuredDataDirective
+          (keydown.enter)="go('./series-details', item.id)"
+          (click)="go('./series-details', item.id)"
+          class="col-lg-3 col-md-4 col-sm-6 col-12"
+          [data$]="item"
+          [index]="$index"
+          [ariaLabel]="item.name"
           [appStructuredData]="{
             '@context': 'https://schema.org',
             '@type': 'TVSeries',
@@ -60,11 +67,6 @@
               ratingCount: item.vote_count
             }
           }"
-          (keydown.enter)="go('./series-details', item.id)"
-          class="col-lg-3 col-md-4 col-sm-6 col-12"
-          [data$]="item"
-          [index]="$index"
-          [ariaLabel]="item.name"
         ></app-card> </ng-template
       >}
     </owl-carousel-o>
@@ -84,6 +86,7 @@
           [data$]="item"
           [index]="$index"
           (keydown.enter)="go('./movies-details', item.id)"
+          (click)="go('./movies-details', item.id)"
           [ariaLabel]="item.title"
           appStructuredDataDirective
           [appStructuredData]="{
@@ -113,6 +116,12 @@
         <app-card
           [isHome]="true"
           tabindex="0"
+          (keydown.enter)="go('./series-details', item.id)"
+          (click)="go('./series-details', item.id)"
+          class="col-lg-3 col-md-4 col-sm-6 col-12"
+          [data$]="item"
+          [index]="$index"
+          [ariaLabel]="item.name"
           appStructuredDataDirective
           [appStructuredData]="{
             '@context': 'https://schema.org',
@@ -128,11 +137,6 @@
               ratingCount: item.vote_count
             }
           }"
-          (keydown.enter)="go('./series-details', item.id)"
-          class="col-lg-3 col-md-4 col-sm-6 col-12"
-          [data$]="item"
-          [index]="$index"
-          [ariaLabel]="item.name"
         ></app-card> </ng-template
       >}
     </owl-carousel-o>
