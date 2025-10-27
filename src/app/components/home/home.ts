@@ -70,7 +70,7 @@ export class Home {
       this.popularSeries().length > 0 &&
       this.showCarousel()
   );
-  clickable = signal<boolean>(false);
+  clickable = signal<boolean>(true);
   showCarousel = signal<boolean>(false);
   customOptions: OwlOptions = {
     loop: true,

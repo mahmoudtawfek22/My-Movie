@@ -85,8 +85,8 @@
           tabindex="0"
           [data$]="item"
           [index]="$index"
-          (keydown.enter)="go('./movies-details', item.id)"
-          (click)="go('./movies-details', item.id)"
+          (keydown.enter)="go('./movie-details', item.id)"
+          (click)="go('./movie-details', item.id)"
           [ariaLabel]="item.title"
           appStructuredDataDirective
           [appStructuredData]="{
