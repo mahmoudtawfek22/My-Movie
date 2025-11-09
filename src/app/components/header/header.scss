@@ -25,6 +25,17 @@ header {
   align-items: center;
   gap: 3rem;
 }
+li.ai {
+  padding: 5px;
+
+  &:hover {
+    color: white;
+
+    transform: scale(1);
+
+    border-bottom: 1px solid var(--primary);
+  }
+}
 .ai.active {
   color: white;
   transform: scale(1);
@@ -36,18 +47,10 @@ header {
   color: white;
   padding: 3px;
   border-radius: 8px;
-  transform: scale(1);
 
   // text-transform: uppercase;
   animation: pulse 1.5s infinite;
   box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-  &:hover {
-    color: white;
-    // font-size: large;
-    // font-weight: 600;
-
-    border-bottom: 1px solid var(--primary);
-  }
 }
 
 @keyframes pulse {
