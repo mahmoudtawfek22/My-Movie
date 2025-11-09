@@ -1,0 +1,47 @@
+<div class="search-con">
+  <form #aiForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="message-input">
+      <textarea
+        class="message-inputt"
+        name="prompt"
+        [(ngModel)]="prompt"
+        (keyup.enter)="onSubmit()"
+        placeholder="Type your prompt..."
+        rows="2"
+      ></textarea>
+      <button type="submit" class="btn btn-dark">search</button>
+    </div>
+  </form>
+
+  @if (movies().length>0) {
+  <section>
+    <div class="row">
+      @for (item of movies(); track item.id) {
+      <app-card
+        animate.enter="enter-animation"
+        class="col-lg-3 col-md-4 col-sm-6 col-12"
+        [data$]="item"
+        [index]="$index"
+        (keydown.enter)="go(item.id)"
+        [routerLink]="['./movie-details', item.id]"
+        [ariaLabel]="item.title"
+        appStructuredDataDirective
+        [appStructuredData]="{
+          '@context': 'https://schema.org',
+          '@type': 'Movie',
+          name: item.title,
+          image: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
+          description: item.overview,
+          datePublished: item.release_date,
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: item.vote_average,
+            ratingCount: item.vote_count
+          }
+        }"
+      ></app-card>
+      }
+    </div>
+  </section>
+  }
+</div>

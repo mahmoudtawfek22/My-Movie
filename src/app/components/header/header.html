@@ -130,6 +130,17 @@
         >
           Home
         </li>
+
+        <li
+          (click)="searchText.set('')"
+          [routerLink]="['ai']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }"
+          (keydown.enter)="go('ai')"
+          class="ai"
+        >
+          <span class="ai-feature">AI Search</span>
+        </li>
         <li
           (click)="searchText.set('')"
           [routerLink]="['movies', pageNum()]"

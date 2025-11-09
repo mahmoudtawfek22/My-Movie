@@ -32,6 +32,7 @@ import { environment } from '../../../environments/environment';
 import { TvItem } from '../../shared/models/tv';
 import { HomeService } from '../../services/home-service';
 import { FormsModule } from '@angular/forms';
+import { AiService } from '../../services/ai-service';
 
 @Component({
   selector: 'app-home',
@@ -111,7 +112,8 @@ export class Home {
   constructor(
     private meta: MetaService,
     private acivatedroute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private ai: AiService
   ) {
     this.meta.updateMetaTags(moviesMetaData, 'Movies');
     afterRenderEffect(() => {
@@ -119,7 +121,11 @@ export class Home {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ai.aiSearch(
+      ' i want a movie about action and jason statham is the main '
+    );
+  }
 
   go(route: string, id: number) {
     if (this.clickable()) {

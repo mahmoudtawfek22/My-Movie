@@ -82,6 +82,11 @@ export const routes: Routes = [
       import('./components/about/about').then((m) => m.About),
   },
   {
+    path: 'ai',
+    loadComponent: () =>
+      import('./components/ai-search/ai-search').then((m) => m.AiSearch),
+  },
+  {
     path: '**',
     redirectTo: '/home',
     pathMatch: 'full',

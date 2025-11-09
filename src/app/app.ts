@@ -11,10 +11,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Footer } from './shared/components/footer/footer';
 import { filter } from 'rxjs';
 import { log } from 'console';
+import { AiSearch } from './components/ai-search/ai-search';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, Header, Footer],
+  imports: [RouterOutlet, CommonModule, Header, Footer, AiSearch],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
