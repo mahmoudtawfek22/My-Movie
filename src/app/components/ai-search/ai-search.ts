@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { AiService } from '../../services/ai-service';
 import { FormsModule } from '@angular/forms';
 import {
@@ -34,6 +34,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
   styleUrl: './ai-search.scss',
 })
 export class AiSearch {
+  isLoading = signal<boolean>(false);
   prompt = signal<string>('');
   movies = signal<MediaItem[]>([]);
   constructor(
@@ -44,34 +45,33 @@ export class AiSearch {
     private acivatedroute: ActivatedRoute
   ) {}
   go(id: number) {
-    // if (ev.key.toLowerCase() == 'enter') {
     this.router.navigate(['./movie-details', id], {
       relativeTo: this.acivatedroute,
     });
   }
   onSubmit() {
     this.movies.set([]);
+    this.isLoading.set(true);
+
     this.ai
       .aiSearch(this.prompt())
       .pipe(
-        map((res: any) => res.exampleMovies), // => ['Inception', 'Interstellar', ...]
+        map((res: any) => res.exampleMovies),
         switchMap((movies: string[]) =>
           from(movies).pipe(
-            // يحول المصفوفة إلى observable تبعث كل فيلم
             mergeMap((movie) =>
               this.movieSer.searchMovies(1, movie).pipe(
                 map((res: any) => res.results[0]),
                 filter((res) => res != undefined)
               )
             ),
-            toArray() // تجمع كل النتائج في مصفوفة واحدة بعد انتهاء العمليات
+            toArray()
           )
         )
       )
       .subscribe((res) => {
-        console.log(res);
-
         this.movies.set(res);
+        this.isLoading.set(false);
       });
   }
 }

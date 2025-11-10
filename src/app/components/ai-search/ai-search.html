@@ -12,36 +12,72 @@
       <button type="submit" class="btn btn-dark">search</button>
     </div>
   </form>
+  @if (!isLoading()){
+  <ng-container>
+    @if (movies().length>0) {
+    <section>
+      <div class="row">
+        @for (item of movies(); track item.id) {
+        <app-card
+          animate.enter="enter-animation"
+          class="col-lg-3 col-md-4 col-sm-6 col-12"
+          [data$]="item"
+          [index]="$index"
+          (keydown.enter)="go(item.id)"
+          [routerLink]="['./movie-details', item.id]"
+          [ariaLabel]="item.title"
+          appStructuredDataDirective
+          [appStructuredData]="{
+            '@context': 'https://schema.org',
+            '@type': 'Movie',
+            name: item.title,
+            image: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
+            description: item.overview,
+            datePublished: item.release_date,
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: item.vote_average,
+              ratingCount: item.vote_count
+            }
+          }"
+        ></app-card>
+        }
+      </div>
+    </section>
+    } </ng-container
+  >}@else{
 
-  @if (movies().length>0) {
-  <section>
-    <div class="row">
-      @for (item of movies(); track item.id) {
-      <app-card
-        animate.enter="enter-animation"
-        class="col-lg-3 col-md-4 col-sm-6 col-12"
-        [data$]="item"
-        [index]="$index"
-        (keydown.enter)="go(item.id)"
-        [routerLink]="['./movie-details', item.id]"
-        [ariaLabel]="item.title"
-        appStructuredDataDirective
-        [appStructuredData]="{
-          '@context': 'https://schema.org',
-          '@type': 'Movie',
-          name: item.title,
-          image: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
-          description: item.overview,
-          datePublished: item.release_date,
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: item.vote_average,
-            ratingCount: item.vote_count
-          }
-        }"
-      ></app-card>
-      }
+  <div
+    style="height: 80vh"
+    class="d-flex justify-content-center align-items-center w-100"
+  >
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only"></span>
     </div>
-  </section>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-light" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only"></span>
+    </div>
+    <div class="spinner-grow text-dark" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
   }
 </div>
