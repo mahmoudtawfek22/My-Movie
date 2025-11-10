@@ -11,6 +11,11 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
   {
+    path: 'home',
+
+    renderMode: RenderMode.Server,
+  },
+  {
     path: 'movies/:id/movie-details/:id',
     renderMode: RenderMode.Server,
   },
@@ -29,7 +34,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'about',
-    renderMode: RenderMode.Server,
+    renderMode: RenderMode.Prerender,
   },
   {
     path: 'home/movie-details/:id',
@@ -41,6 +46,10 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'ai',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'ai/movie-details/:id',
     renderMode: RenderMode.Server,
   },
   {

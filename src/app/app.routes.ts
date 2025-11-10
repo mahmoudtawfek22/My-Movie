@@ -83,8 +83,21 @@ export const routes: Routes = [
   },
   {
     path: 'ai',
-    loadComponent: () =>
-      import('./components/ai-search/ai-search').then((m) => m.AiSearch),
+
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./components/ai-search/ai-search').then((m) => m.AiSearch),
+      },
+      {
+        path: 'movie-details/:id',
+        loadComponent: () =>
+          import('./components/movie-details/movie-details').then(
+            (m) => m.MovieDetails
+          ),
+      },
+    ],
   },
   {
     path: '**',

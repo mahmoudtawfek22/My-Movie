@@ -24,7 +24,7 @@
           [data$]="item"
           [index]="$index"
           (keydown.enter)="go(item.id)"
-          [routerLink]="['./movie-details', item.id]"
+          [routerLink]="['movie-details', item.id]"
           [ariaLabel]="item.title"
           appStructuredDataDirective
           [appStructuredData]="{

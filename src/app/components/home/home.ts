@@ -112,8 +112,7 @@ export class Home {
   constructor(
     private meta: MetaService,
     private acivatedroute: ActivatedRoute,
-    public router: Router,
-    private ai: AiService
+    public router: Router
   ) {
     this.meta.updateMetaTags(moviesMetaData, 'Movies');
     afterRenderEffect(() => {
@@ -121,11 +120,7 @@ export class Home {
     });
   }
 
-  ngOnInit() {
-    this.ai.aiSearch(
-      ' i want a movie about action and jason statham is the main '
-    );
-  }
+  ngOnInit() {}
 
   go(route: string, id: number) {
     if (this.clickable()) {

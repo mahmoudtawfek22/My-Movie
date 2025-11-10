@@ -37,14 +37,13 @@ Respond strictly in this JSON format:
         contents: prompt,
       })
       .then((res) => {
-        const cleanedText = res.text ?? ''; // <- directly access text
-        const text = cleanedText
+        const text = res.text ?? ''; // <- directly access text
+        const cleanedText = text
           .replace(/```(?:json)?\s*/, '')
           .replace(/```$/, '');
 
         try {
-          const parsed = JSON.parse(text as any); // parse JSON string
-          console.log('parsed', parsed);
+          const parsed = JSON.parse(cleanedText as any); // parse JSON string
 
           return parsed;
         } catch (error) {

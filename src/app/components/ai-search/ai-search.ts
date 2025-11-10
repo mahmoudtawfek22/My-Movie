@@ -17,7 +17,6 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { MediaItem } from '../../shared/models/movies';
 import { MoviesService } from '../../services/movies-service';
-import { log } from 'console';
 import { Card } from '../../shared/components/card/card';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { StructuredDataDirective } from '../../shared/directives/structured-data-directive';
