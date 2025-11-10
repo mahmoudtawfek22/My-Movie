@@ -8,7 +8,9 @@ import {
   map,
   mergeMap,
   of,
+  Subject,
   switchMap,
+  takeUntil,
   tap,
   toArray,
 } from 'rxjs';
@@ -34,12 +36,12 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
   styleUrl: './ai-search.scss',
 })
 export class AiSearch {
+  unsubscribe = new Subject<void>();
   isLoading = signal<boolean>(false);
   prompt = signal<string>('');
   movies = signal<MediaItem[]>([]);
   constructor(
     private ai: AiService,
-    private http: HttpClient,
     private movieSer: MoviesService,
     private router: Router,
     private acivatedroute: ActivatedRoute
@@ -67,11 +69,17 @@ export class AiSearch {
             ),
             toArray()
           )
-        )
+        ),
+        takeUntil(this.unsubscribe)
       )
       .subscribe((res) => {
         this.movies.set(res);
         this.isLoading.set(false);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }
