@@ -15,15 +15,11 @@ import { AiSearch } from './components/ai-search/ai-search';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, Header, Footer, AiSearch],
+  imports: [RouterOutlet, CommonModule, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('Mymovie');
-  constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: object,
-    private route: ActivatedRoute
-  ) {}
+  constructor() {}
 }

@@ -24,13 +24,13 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { authInterceptor } from './shared/interceptors/auth-interceptor';
-import { NgOptimizedImage } from '@angular/common';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideStore } from '@ngrx/store';
+import { aiReducer } from './store/reducers';
 import {
-  BrowserAnimationsModule,
-  provideAnimations,
-  provideNoopAnimations,
-} from '@angular/platform-browser/animations';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+  provideStoreDevtools,
+  StoreDevtoolsModule,
+} from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -47,5 +47,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideClientHydration(withEventReplay(), withI18nSupport()),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
+    provideStore({ aiReducer: aiReducer }),
   ],
 };

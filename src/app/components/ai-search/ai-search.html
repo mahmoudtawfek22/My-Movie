@@ -12,7 +12,9 @@
       <button type="submit" class="btn btn-dark">search</button>
     </div>
   </form>
-  @if (!isLoading()){
+  @if (errMsg()) {
+  <div class="text-center text-danger">{{ errMsg() }}</div>
+  } @if (!isLoading()){
   <ng-container>
     @if (movies().length>0) {
     <section>

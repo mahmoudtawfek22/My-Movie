@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { catchError, from, Observable, throwError } from 'rxjs';
 import { GoogleGenAI } from '@google/genai';
 import { environment } from '../../environments/environment';
 
@@ -9,7 +9,8 @@ import { environment } from '../../environments/environment';
 export class AiService {
   ai = new GoogleGenAI({ apiKey: environment.GEMINI_API_KEY });
   constructor() {}
-  aiSearch(userInput: string): Observable<string> {
+
+  aiSearch(userInput: string): Observable<any> {
     const prompt = `
  The user is asking for movie recommendations.
 
@@ -31,29 +32,40 @@ Respond strictly in this JSON format:
   "exampleMovies": ["Movie1", "Movie2", "Movie3", "Movie4", "Movie5", ...]
 }
 `;
+
     const promise = this.ai.models
       .generateContent({
         model: 'gemini-2.5-flash',
         contents: prompt,
       })
-      .then((res) => {
-        const text = res.text ?? ''; // <- directly access text
+      .then((res: any) => {
+        const text = res.text ?? '';
         const cleanedText = text
           .replace(/```(?:json)?\s*/, '')
           .replace(/```$/, '');
 
         try {
-          const parsed = JSON.parse(cleanedText as any); // parse JSON string
-
+          const parsed = JSON.parse(cleanedText);
           return parsed;
-        } catch (error) {
-          return { ingredients: [], steps: [] };
+        } catch (error: any) {
+          throw new Error(error);
         }
       })
       .catch((err) => {
-        return { ingredients: [], steps: [] };
+        const parsedErr = JSON.parse(err.message);
+
+        try {
+          const parsedErr = JSON.parse(err.message);
+          return Promise.reject(parsedErr);
+        } catch (parseError) {
+          return Promise.reject(err);
+        }
       });
 
-    return from(promise);
+    return from(promise).pipe(
+      catchError((err) => {
+        return throwError(() => err);
+      })
+    );
   }
 }
