@@ -12,6 +12,7 @@
       <button type="submit" class="btn btn-dark">search</button>
     </div>
   </form>
+
   @if (errMsg()) {
   <div class="text-center text-danger">{{ errMsg() }}</div>
   } @if (!isLoading()){
@@ -33,7 +34,9 @@
             '@context': 'https://schema.org',
             '@type': 'Movie',
             name: item.title,
-            image: 'https://image.tmdb.org/t/p/w500/' + item.poster_path,
+            image: item.poster_path
+              ? 'https://image.tmdb.org/t/p/w500/' + item.poster_path
+              : './assets/images/noimage.png',
             description: item.overview,
             datePublished: item.release_date,
             aggregateRating: {

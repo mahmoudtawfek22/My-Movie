@@ -10,7 +10,7 @@
         [ngSrc]="
           data$().poster_path
             ? 'https://image.tmdb.org/t/p/w500/' + data$().poster_path
-            : './assets/noimage.png'
+            : './assets/images/noimage.png'
         "
         [priority]="index() < 5"
         [alt]="data$().name"
