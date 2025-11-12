@@ -59,7 +59,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "outputPath": "dist/browser"
             },
             "development": {
               "optimization": false,

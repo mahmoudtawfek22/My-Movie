@@ -10,6 +10,10 @@
       "dest": "/browser/assets/$1"
     },
     {
+      "src": "/.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$",
+      "dest": "/browser/$0"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server/server.mjs"
     }
