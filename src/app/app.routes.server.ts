@@ -6,6 +6,10 @@ import { MovieDetails } from './components/movie-details/movie-details';
 import { SeriesDetails } from './components/series-details/series-details';
 export const serverRoutes: ServerRoute[] = [
   {
+    path: '',
+    renderMode: RenderMode.Server,
+  },
+  {
     path: 'movies/:id',
 
     renderMode: RenderMode.Server,
