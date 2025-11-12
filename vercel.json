@@ -2,18 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/server/**/*.js",
+      "src": "dist/Mymovie/server/**/*.js",
       "use": "@vercel/node"
     },
     {
-      "src": "dist/browser/**/*",
+      "src": "dist/Mymovie/browser/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/server/index.js"
+      "dest": "/dist/browser/server/index.server.html"
     }
   ]
 }
