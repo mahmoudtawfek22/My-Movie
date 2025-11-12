@@ -8,24 +8,14 @@
     <ul class="pagination">
       <!-- First Page -->
       <li class="page-item" [class.disabled]="isFirstPage()">
-        <a
-          class="page-link"
-          href="javascript:void(0)"
-          (click)="goToFirst()"
-          aria-label="First"
-        >
+        <a class="page-link" (click)="goToFirst()" aria-label="First">
           <span aria-hidden="true">&laquo;&laquo;</span>
         </a>
       </li>
 
       <!-- Previous Page -->
       <li class="page-item" [class.disabled]="isFirstPage()">
-        <a
-          class="page-link"
-          href="javascript:void(0)"
-          (click)="goToPrevious()"
-          aria-label="Previous"
-        >
+        <a class="page-link" (click)="goToPrevious()" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
@@ -41,24 +31,14 @@
 
       <!-- Next Page -->
       <li class="page-item" [class.disabled]="isLastPage()">
-        <a
-          class="page-link"
-          href="javascript:void(0)"
-          (click)="goToNext()"
-          aria-label="Next"
-        >
+        <a class="page-link" (click)="goToNext()" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
 
       <!-- Last Page -->
       <li class="page-item" [class.disabled]="isLastPage()">
-        <a
-          class="page-link"
-          href="javascript:void(0)"
-          (click)="goToLast()"
-          aria-label="Last"
-        >
+        <a class="page-link" (click)="goToLast()" aria-label="Last">
           <span aria-hidden="true">&raquo;&raquo;</span>
         </a>
       </li>

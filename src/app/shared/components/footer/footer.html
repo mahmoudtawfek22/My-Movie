@@ -1,5 +1,5 @@
 <footer
-  class="textcenter text-lg-start mt-0 text-muted"
+  class="text-center text-lg-start mt-0 text-muted"
   role="contentinfo"
   aria-label="Website footer"
 >
@@ -9,27 +9,81 @@
     aria-label="Social media links"
   >
     <div>
-      <a href="" class="me-4" aria-label="Facebook">
-        <i class="fab fa-facebook-f"></i>
+      <a
+        href="https://facebook.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="me-4"
+        aria-label="Visit our Facebook page"
+        title="Visit our Facebook page"
+      >
+        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        <span class="visually-hidden">Facebook</span>
       </a>
-      <a href="" class="me-4" aria-label="Twitter">
-        <i class="fab fa-twitter"></i>
+
+      <a
+        href="https://twitter.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="me-4"
+        aria-label="Visit our Twitter profile"
+        title="Visit our Twitter profile"
+      >
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+        <span class="visually-hidden">Twitter</span>
       </a>
-      <a href="" class="me-4" aria-label="Google">
-        <i class="fab fa-google"></i>
+
+      <a
+        href="https://google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="me-4"
+        aria-label="Visit our Google profile"
+        title="Visit our Google profile"
+      >
+        <i class="fab fa-google" aria-hidden="true"></i>
+        <span class="visually-hidden">Google</span>
       </a>
-      <a href="" class="me-4" aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
+
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="me-4"
+        aria-label="Visit our Instagram profile"
+        title="Visit our Instagram profile"
+      >
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+        <span class="visually-hidden">Instagram</span>
       </a>
-      <a href="" class="me-4" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
+
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="me-4"
+        aria-label="Visit our LinkedIn page"
+        title="Visit our LinkedIn page"
+      >
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+        <span class="visually-hidden">LinkedIn</span>
       </a>
-      <a href="" class="me-4" aria-label="GitHub">
-        <i class="fab fa-github"></i>
+
+      <a
+        href="https://github.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="me-4"
+        aria-label="Visit our GitHub repository"
+        title="Visit our GitHub repository"
+      >
+        <i class="fab fa-github" aria-hidden="true"></i>
+        <span class="visually-hidden">GitHub</span>
       </a>
     </div>
   </section>
 
+  <!-- Footer links and contact -->
   <section aria-label="Footer links and contact information">
     <div class="container text-center text-md-start mt-5">
       <div class="row mt-3">
@@ -42,15 +96,17 @@
             Useful Links
           </h6>
           <p>
-            <a [routerLink]="['/']" aria-label="Movies page"> Movies </a>
-          </p>
-          <p>
-            <a [routerLink]="['/tv', 'all']" aria-label="Series page">
-              Series
+            <a [routerLink]="['/movies', 1]" aria-label="Movies page">
+              Movies
             </a>
           </p>
           <p>
-            <a [routerLink]="['/people']" aria-label="People page"> People </a>
+            <a [routerLink]="['/tv', 1]" aria-label="Series page"> Series </a>
+          </p>
+          <p>
+            <a [routerLink]="['/people', 1]" aria-label="People page">
+              People
+            </a>
           </p>
         </div>
 
@@ -60,32 +116,40 @@
           aria-labelledby="contact-info"
         >
           <h6 id="contact-info" class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> Egypt, Cairo</p>
+          <p>
+            <i class="fas fa-home me-3" aria-hidden="true"></i> Egypt, Cairo
+          </p>
           <p>
             <a
               href="mailto:mahmoud.tawfek.elsayed22@gmail.com"
-              class="text-decoration-none"
-              aria-label="Email Mahmoud Tawfek"
+              class="text-decoration-none text-nowrap"
+              aria-label="Send an email to Mahmoud Tawfek"
+              title="Email Mahmoud Tawfek"
             >
-              <i class="fas fa-envelope me-3"></i>Mahmoud Tawfek
+              <i class="fas fa-envelope me-3" aria-hidden="true"></i>
+              mahmoud.tawfek.elsayed22@gmail.com
             </a>
           </p>
           <p>
             <a
-              href="tel:01280968784"
+              href="tel:+201280968784"
               class="text-decoration-none"
-              aria-label="Call 01280968784"
+              aria-label="Call Mahmoud Tawfek at 01280968784"
+              title="Call 01280968784"
             >
-              <i class="fas fa-phone me-3"></i>01280968784
+              <i class="fas fa-phone me-3" aria-hidden="true"></i>
+              01280968784
             </a>
           </p>
           <p>
             <a
-              href="tel:01095098498"
+              href="tel:+201095098498"
               class="text-decoration-none"
-              aria-label="Call 01095098498"
+              aria-label="Call Mahmoud Tawfek at 01095098498"
+              title="Call 01095098498"
             >
-              <i class="fas fa-phone me-3"></i>01095098498
+              <i class="fas fa-phone me-3" aria-hidden="true"></i>
+              01095098498
             </a>
           </p>
         </div>
@@ -99,9 +163,13 @@
     style="background-color: rgba(0, 0, 0, 0.05)"
     aria-label="Copyright information"
   >
-    © {{ date.getFullYear() }} copyright
-    <a class="text-reset fw-bold" routerLink="" aria-label="Visit mymovie.com"
-      >mymovie.com</a
+    © {{ date.getFullYear() }} Copyright —
+    <a
+      class="text-reset fw-bold"
+      [routerLink]="['/']"
+      aria-label="Go to MyMovie home page"
+      title="Visit MyMovie.com"
+      >MyMovie.com</a
     >
   </div>
 </footer>
