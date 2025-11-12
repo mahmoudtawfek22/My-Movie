@@ -13,13 +13,13 @@ export const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full',
   },
-
   {
     path: 'home',
     children: [
       {
         path: '',
-        component: Home,
+        loadComponent: () =>
+          import('./components/home/home').then((m) => m.Home),
       },
       {
         path: 'movie-details/:id',
