@@ -1,11 +1,23 @@
 {
-  "version": 3,
+  "version": 2,
   "builds": [
-    { "src": "dist/browser/**", "use": "@vercel/static" },
-    { "src": "dist/server/server.mjs", "use": "@vercel/node" }
+    {
+      "src": "dist/server/server.mjs",
+      "use": "@vercel/node"
+    }
   ],
   "routes": [
-    { "src": "/assets/(.*)", "dest": "/browser/assets/$1" },
-    { "src": "/(.*)", "dest": "/server/server.mjs" }
+    {
+      "src": "/assets/(.*)",
+      "dest": "/dist/browser/assets/$1"
+    },
+    {
+      "src": "/.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$",
+      "dest": "/dist/browser/$0"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/server/server.mjs"
+    }
   ]
 }
