@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Optional: block backend or private routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
