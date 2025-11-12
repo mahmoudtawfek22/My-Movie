@@ -7,6 +7,5 @@
   "routes": [
     { "src": "/assets/(.*)", "dest": "/browser/assets/$1" },
     { "src": "/(.*)", "dest": "/server/server.mjs" }
-  ],
-  "functions": { "server/server.mjs": { "maxDuration": 30, "memory": 1024 } }
+  ]
 }
