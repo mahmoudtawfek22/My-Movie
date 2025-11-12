@@ -2,22 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/server/server.mjs",
-      "use": "@vercel/node"
+      "src": "package.json",
+      "use": "@vercel/angular"
     }
   ],
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/browser/assets/$1"
-    },
-    {
-      "src": "/.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$",
-      "dest": "/dist/browser/$0"
+      "dest": "/assets/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/server/server.mjs"
+      "dest": "/index.html"
     }
   ]
 }
