@@ -1,5 +1,16 @@
 {
   "version": 2,
-  "framework": "angular",
-  "routes": [{ "src": "/(.*)", "dest": "/server/server.mjs" }]
+  "builds": [
+    {
+      "src": "dist/Mymovie/server/server.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/Mymovie/browser/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "dist/Mymovie/server/server.mjs" }
+  ]
 }
