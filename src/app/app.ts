@@ -1,17 +1,8 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, inject, PLATFORM_ID, signal } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  RouterOutlet,
-} from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { Header } from './components/header/header';
-import { BrowserModule } from '@angular/platform-browser';
 import { Footer } from './shared/components/footer/footer';
-import { filter } from 'rxjs';
-import { log } from 'console';
-import { AiSearch } from './components/ai-search/ai-search';
 
 @Component({
   selector: 'app-root',
@@ -21,5 +12,11 @@ import { AiSearch } from './components/ai-search/ai-search';
 })
 export class App {
   protected readonly title = signal('Mymovie');
-  constructor() {}
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    if (this.router.url === '/') {
+      this.router.navigateByUrl('/home');
+    }
+  }
 }

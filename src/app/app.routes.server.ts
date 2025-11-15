@@ -7,11 +7,11 @@ import { SeriesDetails } from './components/series-details/series-details';
 export const serverRoutes: ServerRoute[] = [
   {
     path: '',
+
     renderMode: RenderMode.Server,
   },
   {
     path: 'home',
-
     renderMode: RenderMode.Server,
   },
   {
@@ -39,7 +39,7 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'about',
-    renderMode: RenderMode.Prerender,
+    renderMode: RenderMode.Server,
   },
   {
     path: 'home/movie-details/:id',

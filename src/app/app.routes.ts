@@ -19,7 +19,8 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: Home,
+        loadComponent: () =>
+          import('./components/home/home').then((m) => m.Home),
       },
       {
         path: 'movie-details/:id',
@@ -99,9 +100,9 @@ export const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/home',
-  //   pathMatch: 'full',
-  // },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
 ];
