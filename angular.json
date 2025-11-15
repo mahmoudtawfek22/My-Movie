@@ -17,7 +17,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "src/main.ts",
+            "outputPath": "dist/Mymovie/browser",
+            "index": "src/index.html",
+            "main": "src/main.ts",
             "polyfills": [],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -36,12 +38,6 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
             ],
-            "server": "src/main.server.ts",
-
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            },
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
             }
@@ -60,11 +56,32 @@
                   "maximumError": "8kB"
                 }
               ],
+              "optimization": true,
               "outputHashing": "all"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "server": {
+          "builder": "@angular/build:server",
+          "options": {
+            "outputPath": "dist/Mymovie/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
+            },
+            "development": {
+              "optimization": false,
               "sourceMap": true
             }
           },
