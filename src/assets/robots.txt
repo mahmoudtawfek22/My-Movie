@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://my-movie-eight-bice.vercel.app/sitemap.xml
