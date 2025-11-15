@@ -7,10 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr": "node dist/Mymovie/server/server.mjs",
-    "postinstall": "ng build --configuration production",
-    "build:ssr": "ng build && ng run Mymovie:server",
-    "start:ssr": "node dist/Mymovie/server/server.mjs"
+    "serve:ssr:Mymovie": "node dist/Mymovie/server/server.mjs"
   },
   "prettier": {
     "overrides": [
