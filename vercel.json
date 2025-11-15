@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/Mymovie/server/main.server",
+      "src": "dist/Mymovie/server/main.server.mjs",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/Mymovie/server/main.server"
+      "dest": "dist/Mymovie/server/main.server.mjs"
     }
   ]
 }
