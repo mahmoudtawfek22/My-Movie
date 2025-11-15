@@ -10,12 +10,12 @@ div span {
 }
 
 footer p {
-  color: gray;
+  color: var(--primary);
 }
 
 footer a,
 p {
-  color: gray;
+  color: var(--primary);
   text-decoration: none;
   cursor: pointer;
 }
