@@ -11,6 +11,7 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "dist/Mymovie/server/server.mjs" }
+    { "src": "/(.*)", "dest": "dist/Mymovie/server/server.mjs" },
+    { "handle": "filesystem" }
   ]
 }
