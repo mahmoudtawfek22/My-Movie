@@ -11,6 +11,7 @@ import {
   withInMemoryScrolling,
   withViewTransitions,
 } from '@angular/router';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import {
@@ -27,10 +28,8 @@ import { authInterceptor } from './shared/interceptors/auth-interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { aiReducer } from './store/reducers';
-import {
-  provideStoreDevtools,
-  StoreDevtoolsModule,
-} from '@ngrx/store-devtools';
+import { provideEffects } from '@ngrx/effects';
+import { SearchEffects } from './store/lang.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,9 +43,12 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled',
       })
     ),
+    provideStore({ aiReducer: aiReducer }),
+    provideEffects([SearchEffects]),
     provideAnimations(),
     provideClientHydration(withEventReplay(), withI18nSupport()),
+
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
-    provideStore({ aiReducer: aiReducer }),
+    provideStoreDevtools({ maxAge: 25 }),
   ],
 };
